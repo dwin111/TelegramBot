@@ -64,7 +64,17 @@ namespace TelegramBot.App
             {
                 await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Photo");
                 await botClient.SendPhotoAsync(update.Message.Chat.Id, "https://lh3.googleusercontent.com/IALGyI3i7Qb9uWcDuwRadPgPJIYWSlDBsHBjbjxoj4KFbUahMiL2oU9JkQ3DYJGxYhQiy3zPhwoMKPLiPtECygIJltA07tvEvUAgftyQq7z421_0XA=w1200", caption: "Hello");
-                await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[0].FileId , caption: "Hello");
+                List<IAlbumInputMedia> media = new()
+                {
+                    new InputMediaPhoto(update.Message.Photo[0].FileId),
+                    new InputMediaPhoto(update.Message.Photo[1].FileId),
+                    new InputMediaPhoto(update.Message.Photo[2].FileId),
+                    new InputMediaPhoto(update.Message.Photo[3].FileId) { Caption = "text" },
+                };
+                await botClient.SendMediaGroupAsync(update.Message.Chat.Id, media);
+                //await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[0].FileId, caption: "Hello 1");
+                //await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[1].FileId, caption: "Hello 2");
+                //await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[3].FileId , caption: "Hello 3");
                 return;
             }
             if (update.Message.Type == MessageType.VideoNote)
