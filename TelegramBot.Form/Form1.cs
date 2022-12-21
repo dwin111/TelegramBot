@@ -47,6 +47,36 @@ namespace TelegramBot.App
                 await HandleCallbackQuery(botClient, update.CallbackQuery);
                 return;
             }
+
+
+            if(update.Type == UpdateType.EditedMessage)
+            {
+                await botClient.SendTextMessageAsync(update.EditedMessage.Chat.Id, $"You Edit text {update.EditedMessage.Text}");
+                return;
+            }
+            if(update.Message.Type == MessageType.Video)
+            {
+                await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Video");
+                return;
+            }
+            if (update.Message.Type == MessageType.Photo)
+            {
+                await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Photo");
+                return;
+            }
+            if (update.Message.Type == MessageType.VideoNote)
+            {
+                await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Video Note");
+                return;
+            }
+            if (update.Message.Type == MessageType.Sticker)
+            {
+                await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Sticker");
+                return;
+            }
+
+
+
         }
         private async Task HandleMessage(ITelegramBotClient botClient, Telegram.Bot.Types.Message message)
         {
