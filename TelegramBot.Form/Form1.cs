@@ -7,6 +7,7 @@ using TelegramBot.DAL;
 using TelegramBot.Domain.Models;
 using TelegramBot.Service.Implementions;
 using TelegramBot.Service.Interface;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace TelegramBot.App
 {
@@ -62,6 +63,8 @@ namespace TelegramBot.App
             if (update.Message.Type == MessageType.Photo)
             {
                 await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Photo");
+                await botClient.SendPhotoAsync(update.Message.Chat.Id, "https://lh3.googleusercontent.com/IALGyI3i7Qb9uWcDuwRadPgPJIYWSlDBsHBjbjxoj4KFbUahMiL2oU9JkQ3DYJGxYhQiy3zPhwoMKPLiPtECygIJltA07tvEvUAgftyQq7z421_0XA=w1200", caption: "Hello");
+                await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[0].FileId , caption: "Hello");
                 return;
             }
             if (update.Message.Type == MessageType.VideoNote)
