@@ -72,6 +72,8 @@ namespace TelegramBot.App
                     new InputMediaPhoto(update.Message.Photo[3].FileId) { Caption = "text" },
                 };
                 await botClient.SendMediaGroupAsync(update.Message.Chat.Id, media);
+                _db.MediaFile.Add(new Media { Id = 0, FileId = update.Message.Photo[3].FileId, FileName = "Foto", UserSendId = update.Message.Chat.Id, Type = "MediaFoto"});
+                _db.SaveChanges();
                 //await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[0].FileId, caption: "Hello 1");
                 //await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[1].FileId, caption: "Hello 2");
                 //await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[3].FileId , caption: "Hello 3");

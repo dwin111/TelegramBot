@@ -9,12 +9,13 @@ namespace TelegramBot.DAL
         public ApplicationDbContext(string connectionString)
         {
             _connectionString = connectionString;
-            //Database.EnsureDeleted();
+            // Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
         public DbSet<TelegramUser> Users { get; set; } 
         public DbSet<TelegramUserMessage> Messages { get; set; }
+        public DbSet<Media> MediaFile { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
