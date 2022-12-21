@@ -71,7 +71,7 @@ namespace TelegramBot.App
             }
             if (update.Message.Animation != null)
             {
-                await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Gif");
+                await botClient.SendAnimationAsync(update.Message.Chat.Id, update.Message.Animation.FileId);
                 return;
             }
 
