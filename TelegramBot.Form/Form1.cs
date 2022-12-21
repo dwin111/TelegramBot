@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
@@ -72,6 +73,7 @@ namespace TelegramBot.App
                     new InputMediaPhoto(update.Message.Photo[3].FileId) { Caption = "text" },
                 };
                 await botClient.SendMediaGroupAsync(update.Message.Chat.Id, media);
+                await botClient.SendPhotoAsync(update.Message.Chat.Id, _db.MediaFile.FirstOrDefault(x => x.Id == 1).FileId, caption:"This photo in db");
                 _db.MediaFile.Add(new Media { Id = 0, FileId = update.Message.Photo[3].FileId, FileName = "Foto", UserSendId = update.Message.Chat.Id, Type = "MediaFoto"});
                 _db.SaveChanges();
                 //await botClient.SendPhotoAsync(update.Message.Chat.Id, update.Message.Photo[0].FileId, caption: "Hello 1");
