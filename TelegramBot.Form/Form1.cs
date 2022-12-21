@@ -69,9 +69,9 @@ namespace TelegramBot.App
                 await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Video Note");
                 return;
             }
-            if (update.Message.Type == MessageType.Sticker)
+            if (update.Message.Animation != null)
             {
-                await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Sticker");
+                await botClient.SendTextMessageAsync(update.Message.Chat.Id, $"This Gif");
                 return;
             }
 
